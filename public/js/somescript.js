@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     $('#product_id').on('change', function(){
         var product_id = $(this).val();
-        $.get( "index.php/getproductdetails/"+product_id, function( data ) {
+        $.get( "/index.php/getproductdetails/"+product_id, function( data ) {
             var product = data;
             $('#stock_count').val(product.count);
             $('#product_price').val(product.price);
