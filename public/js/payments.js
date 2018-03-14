@@ -3,7 +3,7 @@ $(document).ready(function(){
        var inovice_id = $(this).val();
        if(customer_id != "" && inovice_id != "")
        {
-           $.get( "/getinvoicedetails/"+inovice_id, function( data ) {
+           $.get( "index.php/getinvoicedetails/"+inovice_id, function( data ) {
                var invoice = data;
                $('#customer_id').html('<option value="'+invoice.customer_id+'">'+invoice.name+'</option>');
                $('#due').val(invoice.due + ' Դրամ');
