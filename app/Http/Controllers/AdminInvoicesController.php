@@ -35,7 +35,8 @@
 			$this->col[] = ["label"=>"Ապրանք","name"=>"product_id","join"=>"products,name"];
 			$this->col[] = ["label"=>"Քանակ","name"=>"count"];
 			$this->col[] = ["label"=>"Գինը","name"=>"product_id","join"=>"products,price"];
-			$this->col[] = ["label"=>"Ընդհանուր Գինը","name"=>"total_price","callback_php"=>'$row->count * $row->products_price'];
+			$this->col[] = ["label"=>"Վաճառքի Գինը","name"=>"product_price"];
+			$this->col[] = ["label"=>"Ընդհանուր Գինը","name"=>"total_price","callback_php"=>'$row->count * $row->product_price'];
 			$this->col[] = ["label"=>"Ընդհանուր Պարտք","name"=>"due"];
 			$this->col[] = ["label"=>"Վճարված է ամբողջությամբ   ","name"=>"paid_fully"];
 			$this->col[] = ["label"=>"Նշումներ","name"=>"comments"];
@@ -47,7 +48,7 @@
 			$this->form[] = ['label'=>'Հաճախորդ','name'=>'customer_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'customers,name'];
 			$this->form[] = ['label'=>'Ապրանք','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'products,name'];
 			$this->form[] = ['label'=>'Պահեստում առկա քանակություն','name'=>'stock_count','type'=>'text','readonly'=>'true','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Ապրանքի գինը','type'=>'text','name'=>'product_price', 'readonly'=>'true','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Ապրանքի գինը','type'=>'text','name'=>'product_price', 'width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Քանակ','name'=>'count','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Ընդհանուր  գին','name'=>'total_price','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10','readonly'=>'true','disabled'=>'true'];
 			$this->form[] = ['label'=>'Վճարված է','name'=>'paid_fully','type'=>'text','readonly'=>'true','width'=>'col-sm-10','value'=>'Ոչ'];
@@ -269,12 +270,12 @@
 	    |
 	    */
 	    public function hook_before_add(&$postdata) {
-            $postdata['total_price'] = $this->get_product_price($postdata['product_id']) * $postdata['count'];
+            $postdata['total_price'] = $postdata['product_price'] * $postdata['count'];
             $newstockcount = $postdata['stock_count'] - $postdata['count'];
 
             DB::table('stock') ->where('product_id',$postdata['product_id'])->update(['count'=> $newstockcount]);
             unset($postdata['stock_count']);
-            unset($postdata['product_price']);
+            //unset($postdata['product_price']);
 
 	    }
 
@@ -317,6 +318,7 @@
                     'product_id' => $invoice->product_id,
                     'customer_id' => $invoice->customer_id,
                     'count' => $invoice->count,
+                    //'saled_price'=>$invoice->total_price / $invoice->count,
                     'invoice_id' => $invoice->id,
                     'in_out' => 'Ելք',
                     'comments' => $invoice->comments,
