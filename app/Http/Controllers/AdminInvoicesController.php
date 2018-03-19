@@ -350,7 +350,8 @@
 	    | 
 	    */
 	    public function hook_after_edit($id) {
-	        //Your code here 
+	        //Your code here
+            $this->hook_after_add($id);
 
 	    }
 

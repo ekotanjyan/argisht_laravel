@@ -3,6 +3,16 @@
  */
 $(document).ready(function () {
 
+    if($('#product_id').val()!= '')
+    {
+        var product_id = $('#product_id').val();
+        $.get( "/index.php/getproductdetails/"+product_id, function( data ) {
+            var product = data;
+            $('#stock_count').val(product.count);
+            $('#product_price').val(product.price);
+
+        });
+    }
     $('#product_id').on('change', function(){
         var product_id = $(this).val();
         $.get( "/index.php/getproductdetails/"+product_id, function( data ) {
@@ -12,9 +22,9 @@ $(document).ready(function () {
 
         });
     })
-    $('#count').on('change', function(data){
-        var inovice_count = $(this).val();
-        var alertmessageobj =  $(this).parent().find('.text-danger');
+    $('#count, #product_price').on('change', function(data){
+        var inovice_count = $('#count').val();
+        var alertmessageobj =  $('#count').parent().find('.text-danger');
         var count = $('#stock_count').val();
         if(count - inovice_count < 0)
         {
