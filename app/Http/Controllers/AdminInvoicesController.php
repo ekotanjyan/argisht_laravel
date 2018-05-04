@@ -322,6 +322,7 @@
                     'invoice_id' => $invoice->id,
                     'in_out' => 'Ելք',
                     'comments' => $invoice->comments,
+                    'created_At' => date('Y-m-d H:i:s'),
                 ]
             );
 

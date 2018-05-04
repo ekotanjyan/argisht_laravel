@@ -272,6 +272,7 @@
                     'count' => $postdata['count'],
                     'in_out' => 'Մուտք',
                     'comments' => $postdata['comments'],
+                    'created_at' => date('Y-m-d H:i:s'),
                 ]
             );
             $postdata['count'] = $totalcount;
