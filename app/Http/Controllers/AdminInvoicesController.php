@@ -320,6 +320,7 @@
                     'count' => $invoice->count,
                     //'saled_price'=>$invoice->total_price / $invoice->count,
                     'invoice_id' => $invoice->id,
+			'created_at'=>date("Y-m-d H:i:s"),
                     'in_out' => 'Ելք',
                     'comments' => $invoice->comments,
                 ]

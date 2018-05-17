@@ -34,6 +34,8 @@
 			$this->col[] = ["label"=>"Քանակություն","name"=>"count"];
 			$this->col[] = ["label"=>"Գործընկեր","name"=>"partner_id","join"=>"partners,name"];
 			$this->col[] = ["label"=>"Նշումներ","name"=>"comments"];
+			$this->col[] = ["label"=>"Tesak","name"=>"products.product_type_id","join"=>"product_type,name"];
+
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
@@ -41,7 +43,7 @@
 			$this->form[] = ['label'=>'Ապրանք','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'products,name'];
 			$this->form[] = ['label'=>'Քանակություն','name'=>'count','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Գործընկեր','name'=>'partner_id','type'=>'select2','width'=>'col-sm-9', 'datatable'=>'partners,name'];
+			$this->form[] = ['label'=>'Գործընկեր','name'=>'partner_id','type'=>'select2','width'=>'col-sm-9','datatable'=>'partners,name'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
@@ -49,6 +51,7 @@
 			//$this->form[] = ['label'=>'Ապրանք','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'products,name'];
 			//$this->form[] = ['label'=>'Քանակություն','name'=>'count','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Գործընկեր','name'=>'partner_id','type'=>'select2','width'=>'col-sm-9','datatable'=>'partners,name'];
 			# OLD END FORM
 
 			/* 
@@ -272,6 +275,7 @@
                     'count' => $postdata['count'],
                     'in_out' => 'Մուտք',
                     'comments' => $postdata['comments'],
+			'created_at' => date('Y-m-d H:i:s'),
                 ]
             );
             $postdata['count'] = $totalcount;
