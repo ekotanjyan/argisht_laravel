@@ -323,6 +323,7 @@
 			'created_at'=>date("Y-m-d H:i:s"),
                     'in_out' => 'Ելք',
                     'comments' => $invoice->comments,
+                    'created_At' => date('Y-m-d H:i:s'),
                 ]
             );
 
