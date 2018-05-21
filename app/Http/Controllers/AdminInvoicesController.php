@@ -340,11 +340,11 @@
 	    public function hook_before_edit(&$postdata,$id) {
 				$postdata['total_price'] = $postdata['product_price'] * $postdata['count'];
 				$invoice = DB::table('invoices')->where('id',$id)->first();
-				$origInvoiceCount = $invoice['count'];
+				$origInvoiceCount = $invoice->count;
 				$difference =  $postdata['count'] - $origInvoiceCount;
 				$newstockcount = $postdata['stock_count'] - $difference;
 				if($newstockcount < 0)
-				{
+				{ 
 					echo 'TVYAL QANAKUTYUN ARKA CHE PAHESTUM';die;
 					return false;
 				}
