@@ -5,7 +5,7 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminProductsController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminDollarController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
@@ -17,50 +17,33 @@
 			$this->button_table_action = true;
 			$this->button_bulk_action = true;
 			$this->button_action_style = "button_icon";
-			$this->button_add = true;
+			$this->button_add = false;
 			$this->button_edit = true;
-			$this->button_delete = true;
-			$this->button_detail = true;
+			$this->button_delete = false;
+			$this->button_detail = false;
 			$this->button_show = true;
 			$this->button_filter = true;
 			$this->button_import = false;
-			$this->button_export = true;
-			$this->table = "products";
+			$this->button_export = false;
+			$this->table = "dollar";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Անվանում","name"=>"name"];
-			$this->col[] = ["label"=>"Տեսակ","name"=>"product_type_id","join"=>"product_type,name"];
-			$this->col[] = ["label"=>"Չափման միավոր","name"=>"product_measure_id","join"=>"product_measure,name"];
-			$this->col[] = ["label"=>"Արտարժույթ","name"=>"currency","join"=>"dollar,name"];
-			$this->col[] = ["label"=>"Գին","name"=>"price"];
-			$this->col[] = ["label"=>"Պարամետր","name"=>"parameter"];
-			$this->col[] = ["label"=>"Նշումներ","name"=>"comments"];
-			$this->col[] = ["label"=>"Նկար","name"=>"image","image"=>true];
+			$this->col[] = ["label"=>"Name","name"=>"name"];
+			$this->col[] = ["label"=>"Price","name"=>"price"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Անվանում','name'=>'name','type'=>'text','validation'=>'required|string|min:2|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			$this->form[] = ['label'=>'Տեսակ','name'=>'product_type_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'product_type,name'];
-			$this->form[] = ['label'=>'Չափման Միավոր','name'=>'product_measure_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'product_measure,name'];
-			$this->form[] = ['label'=>'Արտարժույթ','name'=>'currency','type'=>'select','validation'=>'required','width'=>'col-sm-9', 'datatable'=>'dollar,name'];
-			$this->form[] = ['label'=>'Գին','name'=>'price','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Պարամետր','name'=>'parameter','type'=>'textarea','validation'=>'string|min:3|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Նկար','name'=>'image','type'=>'upload','validation'=>'image','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Name','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'Դուք կարող եք մուտքագրել միայն տառեր'];
+			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Անվանում','name'=>'name','type'=>'text','validation'=>'required|string|min:2|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			//$this->form[] = ['label'=>'Տեսակ','name'=>'product_type_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'product_type,name'];
-			//$this->form[] = ['label'=>'Չափման Միավոր','name'=>'product_measure_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'product_measure,name'];
-			//$this->form[] = ['label'=>'Գին','name'=>'price','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Պարամետր','name'=>'parameter','type'=>'textarea','validation'=>'string|min:3|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Նկար','name'=>'image','type'=>'upload','validation'=>'image','width'=>'col-sm-9'];
+			//$this->form[] = ["label"=>"Name","name"=>"name","type"=>"text","required"=>TRUE,"validation"=>"required|string|min:3|max:70","placeholder"=>"Դուք կարող եք մուտքագրել միայն տառեր"];
+			//$this->form[] = ["label"=>"Price","name"=>"price","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
 			# OLD END FORM
 
 			/* 

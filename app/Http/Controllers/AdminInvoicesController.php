@@ -17,10 +17,10 @@
 			$this->button_table_action = true;
 			$this->button_bulk_action = true;
 			$this->button_action_style = "button_icon";
-			$this->button_add = true;
-			$this->button_edit = true;
+			$this->button_add = false;
+			$this->button_edit = false;
 			$this->button_delete = true;
-			$this->button_detail = false;
+			$this->button_detail = true;
 			$this->button_show = true;
 			$this->button_filter = true;
 			$this->button_import = false;
@@ -31,14 +31,13 @@
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
 			$this->col[] = ["label"=>"Գործարքի Համար","name"=>"id"];
+			$this->col[] = ["label"=>"Ընդունող","name"=>"user_id","join"=>"cms_users,name"];
 			$this->col[] = ["label"=>"Հաճախորդ","name"=>"customer_id","join"=>"customers,name"];
-			$this->col[] = ["label"=>"Ապրանք","name"=>"product_id","join"=>"products,name"];
-			$this->col[] = ["label"=>"Քանակ","name"=>"count"];
-			$this->col[] = ["label"=>"Գինը","name"=>"product_id","join"=>"products,price"];
-			$this->col[] = ["label"=>"Վաճառքի Գինը","name"=>"product_price"];
-			$this->col[] = ["label"=>"Ընդհանուր Գինը","name"=>"total_price","callback_php"=>'$row->count * $row->product_price'];
-			$this->col[] = ["label"=>"Ընդհանուր Պարտք","name"=>"due"];
-			$this->col[] = ["label"=>"Վճարված է ամբողջությամբ   ","name"=>"paid_fully"];
+			$this->col[] = ["label"=>"Ընդ․ Գինը","name"=>"total_price"];
+			$this->col[] = ["label"=>"Ընդ․ Պարտք","name"=>"due"];
+			$this->col[] = ["label"=>"Վճարված է ամբողջությամբ","name"=>"paid_fully"];
+			$this->col[] = ["label"=>"Ընդ․ Զեղչ","name"=>"total_sale"];
+			$this->col[] = ["label"=>"Նաղքան Զեղչ","name"=>"did_price"];
 			$this->col[] = ["label"=>"Նշումներ","name"=>"comments"];
 			$this->col[] = ["label"=>"Ամսաթիվ","name"=>"created_at"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
@@ -47,11 +46,11 @@
 			$this->form = [];
 			$this->form[] = ['label'=>'Հաճախորդ','name'=>'customer_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'customers,name'];
 			$this->form[] = ['label'=>'Ապրանք','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'products,name'];
-			$this->form[] = ['label'=>'Պահեստում առկա քանակություն','name'=>'stock_count','type'=>'text','readonly'=>'true','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Ապրանքի գինը','type'=>'text','name'=>'product_price', 'width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Պահեստում առկա քանակություն','name'=>'stock_count','type'=>'text','width'=>'col-sm-10','readonly'=>'true'];
+			$this->form[] = ['label'=>'Ապրանքի գինը','name'=>'product_price','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Քանակ','name'=>'count','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Ընդհանուր  գին','name'=>'total_price','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10','readonly'=>'true','disabled'=>'true'];
-			$this->form[] = ['label'=>'Վճարված է','name'=>'paid_fully','type'=>'text','readonly'=>'true','width'=>'col-sm-10','value'=>'Ոչ'];
+			$this->form[] = ['label'=>'Վճարված է','name'=>'paid_fully','type'=>'text','width'=>'col-sm-10','readonly'=>'true','value'=>'Ոչ'];
 			$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
@@ -59,9 +58,11 @@
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Հաճախորդ','name'=>'customer_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'customers,name'];
 			//$this->form[] = ['label'=>'Ապրանք','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'products,name'];
+			//$this->form[] = ['label'=>'Պահեստում առկա քանակություն','name'=>'stock_count','type'=>'text','width'=>'col-sm-10','readonly'=>'true'];
+			//$this->form[] = ['label'=>'Ապրանքի գինը','name'=>'product_price','type'=>'text','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Քանակ','name'=>'count','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Ընդհանուր  գին','name'=>'total_price','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10','readonly'=>'true','disabled'=>'true'];
-			//$this->form[] = ['label'=>'Վճարված է','name'=>'paid_fully','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Այո; Ոչ'];
+			//$this->form[] = ['label'=>'Վճարված է','name'=>'paid_fully','type'=>'text','width'=>'col-sm-10','readonly'=>'true','value'=>'Ոչ'];
 			//$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			# OLD END FORM
 
@@ -92,6 +93,7 @@
 	        |
 	        */
 	        $this->addaction = array();
+            $this->addaction[] = ['label'=>'View Invoice','url'=>CRUDBooster::mainpath('invoice/[id]'),'icon'=>'fa fa-check','color'=>'success','showIf'=>"[status] == 'pending'"];
 
 
 	        /*
@@ -140,7 +142,8 @@
 	        | @color = Default is none. You can use bootstrap success,info,warning,danger,primary.
 	        |
 	        */
-	        $this->table_row_color = array();
+            $this->table_row_color = array();
+            $this->table_row_color[] = ["condition"=>"[paid_fully] == 'Ոչ'","color"=>"danger"];
 
 
 	        /*
@@ -150,8 +153,7 @@
 	        | @label, @count, @icon, @color
 	        |
 	        */
-	        $this->index_statistic = array();
-
+            $this->index_statistic = array();
 
 
 	        /*

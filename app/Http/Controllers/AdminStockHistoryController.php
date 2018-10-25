@@ -30,12 +30,16 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-            $this->col[] = ["label"=>"Մուտք/Ելք","name"=>"in_out"];
-            $this->col[] = ["label"=>"Ապրանքի Անվանում","name"=>"product_id","join"=>"products,name"];
+			$this->col[] = ["label"=>"Մուտք/Ելք","name"=>"in_out"];
+			$this->col[] = ["label"=>"Ապրանքի Անվանում","name"=>"product_id","join"=>"products,name"];
 			$this->col[] = ["label"=>"Հաճախորդի Անուն","name"=>"customer_id","join"=>"customers,name"];
 			$this->col[] = ["label"=>"Գործարքի Համար","name"=>"invoice_id","join"=>"invoices,id"];
 			$this->col[] = ["label"=>"Գործընկերոջ Անուն","name"=>"partner_id","join"=>"partners,name"];
+			$this->col[] = ["label"=>"Արտարժույթ","name"=>"currency","join"=>"dollar,name"];
 			$this->col[] = ["label"=>"Քանակ","name"=>"count"];
+			$this->col[] = ["label"=>"Գինը","name"=>"price"];
+			$this->col[] = ["label"=>"Զեղչ","name"=>"sale"];
+			$this->col[] = ["label"=>"Իսկական Գին","name"=>"original_price"];
 			$this->col[] = ["label"=>"Նշումներ","name"=>"comments"];
 			$this->col[] = ["label"=>"Ամսաթիվ","name"=>"created_at"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
@@ -47,19 +51,25 @@
 			$this->form[] = ['label'=>'Գործարքի Համար','name'=>'invoice_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'invoice,id'];
 			$this->form[] = ['label'=>'Գործընկերոջ Անուն','name'=>'partner_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'partner,id'];
 			$this->form[] = ['label'=>'Քանակ','name'=>'count','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Գինը','name'=>'price','type'=>'text','validation'=>'required','width'=>'col-sm-9'];
+			$this->form[] = ['label'=>'Իսկական Գինը','name'=>'original_price','type'=>'text','validation'=>'required','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Մուտք/Ելք','name'=>'in_out','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Արտարժույթ','name'=>'currency','type'=>'select','validation'=>'required','width'=>'col-sm-9'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Product Id","name"=>"product_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"product,id"];
-			//$this->form[] = ["label"=>"Customer Id","name"=>"customer_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"customer,id"];
-			//$this->form[] = ["label"=>"Invoice Id","name"=>"invoice_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"invoice,id"];
-			//$this->form[] = ["label"=>"Partner Id","name"=>"partner_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"partner,id"];
-			//$this->form[] = ["label"=>"Count","name"=>"count","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"In Out","name"=>"in_out","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Comments","name"=>"comments","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
+			//$this->form[] = ['label'=>'Ապրանքի Անվանում','name'=>'product_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'product,id'];
+			//$this->form[] = ['label'=>'Հաճախորդի Անուն','name'=>'customer_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'customer,id'];
+			//$this->form[] = ['label'=>'Գործարքի Համար','name'=>'invoice_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'invoice,id'];
+			//$this->form[] = ['label'=>'Գործընկերոջ Անուն','name'=>'partner_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'partner,id'];
+			//$this->form[] = ['label'=>'Քանակ','name'=>'count','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Գինը','name'=>'price','type'=>'text','validation'=>'required','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Իսկական Գինը','name'=>'original_price','type'=>'text','validation'=>'required','width'=>'col-sm-9'];
+			//$this->form[] = ['label'=>'Մուտք/Ելք','name'=>'in_out','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Արտարժույթ','name'=>'currency','type'=>'select','validation'=>'required','width'=>'col-sm-9'];
 			# OLD END FORM
 
 			/* 

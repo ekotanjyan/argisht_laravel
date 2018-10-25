@@ -33,6 +33,8 @@
 			$this->col[] = ["label"=>"Հաճախորդի Անուն","name"=>"customer_id","join"=>"customers,name"];
 			$this->col[] = ["label"=>"Գործարքի Համար","name"=>"invoice_id","join"=>"invoices,id"];
 			$this->col[] = ["label"=>"Գործարքի ընդհանուր գինը","name"=>"invoice_id","join"=>"invoices,total_price"];
+			$this->col[] = ["label"=>"Արտարժույթ","name"=>"currency","join"=>"dollar,name"];
+			$this->col[] = ["label"=>"Գումար հիմնական","name"=>"original_amount"];
 			$this->col[] = ["label"=>"Վճարված գումարի Չափը","name"=>"amount"];
 			$this->col[] = ["label"=>"Նշումներ","name"=>"comments"];
 			$this->col[] = ["label"=>"Ամսաթիվ","name"=>"created_at"];
@@ -41,19 +43,20 @@
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
 			$this->form[] = ['label'=>'Գործարքի համար','name'=>'invoice_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'invoices,id'];
-            $this->form[] = ['label'=>'Հաճախորդ','name'=>'customer_id','type'=>'select','readonly'=>'true','width'=>'col-sm-10'];
-            $this->form[] = ['label'=>'Ընդհանուր Պարտքը','name'=>'due','type'=>'text','readonly'=>'true','width'=>'col-sm-10'];
-            $this->form[] = ['label'=>'Վճարվող գումարը','name'=>'amount','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Հաճախորդ','name'=>'customer_id','type'=>'select','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Արտարժույթ','name'=>'currency','type'=>'select','validation'=>'required','width'=>'col-sm-9', 'datatable'=>'dollar,name'];
+			$this->form[] = ['label'=>'Ընդհանուր Պարտքը','name'=>'due','type'=>'text','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Վճարվող գումարը','name'=>'amount','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Customer Id","name"=>"customer_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"customer,id"];
-			//$this->form[] = ["label"=>"Invoice Id","name"=>"invoice_id","type"=>"select2","required"=>TRUE,"validation"=>"required|integer|min:0","datatable"=>"invoice,id"];
-			//$this->form[] = ["label"=>"Amount","name"=>"amount","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Currency","name"=>"currency","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Comments","name"=>"comments","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
+			//$this->form[] = ['label'=>'Գործարքի համար','name'=>'invoice_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'invoices,id'];
+			//$this->form[] = ['label'=>'Հաճախորդ','name'=>'customer_id','type'=>'select','readonly'=>'true','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Ընդհանուր Պարտքը','name'=>'due','type'=>'text','readonly'=>'true','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Վճարվող գումարը','name'=>'amount','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Նշումներ','name'=>'comments','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			# OLD END FORM
 
 			/* 
@@ -269,6 +272,13 @@
 	    */
 	    public function hook_before_add(&$postdata) {        
             unset($postdata['due']);
+           $postdata['original_amount'] = $postdata['amount'];
+
+            $dollar_data = DB::table('dollar')->where('id', $postdata['currency'])->get();
+            $dollar = $dollar_data['0']->price;
+
+            $postdata['amount'] = $dollar * $postdata['amount'];
+
 	    }
 
 	    /* 
@@ -292,7 +302,6 @@
                 {
                     foreach ($payments as $payment)
                     {
-                        //var_dump($payment->amount);
                         $money_paid += $payment->amount;
                     }
                     //var_dump($money_paid);

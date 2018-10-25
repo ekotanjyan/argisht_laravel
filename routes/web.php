@@ -14,5 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/invoice', "AddInvoiceController@invoice");
+Route::get('/getProduct', "AddInvoiceController@getProduct");
+Route::post('/saveInvoice', "AddInvoiceController@addInvoice");
 Route::get('/getproductdetails/{id}', "AdminInvoicesController@get_product_details");
 Route::get('/getinvoicedetails/{id}', "AdminInvoicesController@get_invoice_details");

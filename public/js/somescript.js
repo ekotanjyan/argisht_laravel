@@ -41,17 +41,13 @@ $(document).ready(function () {
 
 
     })
-    var totalcount = 0;
     var totalprice = 0;
     var totaldue = 0;
     $('#table_dashboard tbody > tr').each(function(){
-        totalcount += parseFloat($(this).find('td:nth-child(5)').text());
+        totalprice += parseFloat($(this).find('td:nth-child(5)').text());
     })
     $('#table_dashboard tbody > tr').each(function(){
-        totalprice += parseFloat($(this).find('td:nth-child(7)').text());
+        totaldue += parseFloat($(this).find('td:nth-child(6)').text());
     })
-    $('#table_dashboard tbody > tr').each(function(){
-        totaldue += parseFloat($(this).find('td:nth-child(8)').text());
-    })
-    $('#table_dashboard tfoot').append('<tr><td></td><td></td><td></td><td></td><td>'+totalcount+'</td><td></td><td>'+totalprice+'</td><td>'+totaldue+'</td><td></td><td></td><td></td><td></td></tr>')
+    $('#table_dashboard tfoot').append('<tr><td></td><td></td><td></td><td></td><td>'+totalprice+'</td><td>'+totaldue+'</td><td></td><td></td><td></td></tr>')
 })
