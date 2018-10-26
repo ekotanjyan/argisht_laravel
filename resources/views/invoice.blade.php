@@ -140,28 +140,28 @@
                             @endforeach
                         </select>
                     </div>
-                    <div>
+                    <div class="hid">
                         <label for="stock0">Առկա է</label><br/>
                         <input type="number" name="stock0" placeholder="0" class="form-control divInput" id="stock0"  disabled >
                     </div>
 
 
-                    <div>
+                    <div class="hid">
                         <label for="currency0">Արժույթ</label><br/>
                         <input type="text" name="currency0" placeholder="0" class="form-control divInput" id="currency0" disabled >
                     </div>
 
 
-                    <div>
+                    <div class="hid">
                         <label for="price0">Ապրանքի գինը</label><br/>
                         <input type="number" name="price0" placeholder="0" class="form-control divInput" id="price0" disabled >
                     </div>
 
-                    <div>
-                        <label for="changed0">Փոփոխել գինը</label><br/>
+                    <div >
+                        <label for="changed0">գինը</label><br/>
                         <input onchange="changePrice(0)" type="number" name="changed0" value="0" class="form-control divInput" id="changed0" step="0.01" >
                     </div>
-                    <div>
+                    <div class="hid">
                         <label for="sale0">Զեղչ</label><br/>
                         <input type="text" name="sale0" value="0" class="form-control divInput" id="sale0" disabled >
                     </div>
@@ -376,23 +376,23 @@
             '                    @endforeach\n' +
             '                </select>\n' +
             '                    </div>\n' +
-            '                    <div>\n' +
+            '                    <div class="hid">\n' +
             '                        <label for="stock'+num+'">Առկա է</label><br/>\n' +
             '                        <input type="number" name="stock'+num+'" placeholder="0" class="form-control divInput" id="stock'+num+'"  disabled >\n' +
             '                    </div>\n' +
-            '                    <div>\n' +
+            '                    <div class="hid">\n' +
             '                        <label for="currency'+num+'">Արժույթ</label><br/>\n' +
             '                        <input type="text" name="currency'+num+'" placeholder="0" class="form-control divInput" id="currency'+num+'" disabled >\n' +
             '                    </div>\n' +
-            '                    <div>\n' +
+            '                    <div class="hid">\n' +
             '                        <label for="price'+num+'">Ապրանքի գինը</label><br/>\n' +
             '                        <input type="number" name="price'+num+'" placeholder="0" class="form-control divInput" id="price'+num+'" disabled >\n' +
             '                    </div>\n' +
             '                    <div>\n' +
-            '                        <label for="changed'+num+'">Փոփոխել գինը</label><br/>\n' +
+            '                        <label for="changed'+num+'">գինը</label><br/>\n' +
             '                        <input onchange="changePrice('+num+')" type="number" name="changed'+num+'" value="0" class="form-control divInput" id="changed'+num+'" step="0.01" >\n' +
             '                    </div>\n' +
-            '                    <div>\n' +
+            '                    <div class="hid">\n' +
             '                        <label for="sale'+num+'">Զեղչ</label><br/>\n' +
             '                        <input type="text" name="sale'+num+'" value="0" class="form-control divInput" id="sale'+num+'" disabled >\n' +
             '                    </div>\n' +
