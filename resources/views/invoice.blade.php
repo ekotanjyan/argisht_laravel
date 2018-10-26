@@ -366,9 +366,10 @@
     $('#add').click(function () {
         $('#addd').append('<div class="xlist'+num+'" style="margin-top:15px;border-bottom: 2px solid #141414;padding-bottom: 21px;">\n' +
             '                <div class="block">\n' +
+            '                <div class="block">\n' +
             '               <div>\n' +
             '                <label for="selector'+num+'">Ընտրել ապրանքը</label><br/>\n' +
-            '                <select onchange="myFunction('+num+')" name="selector'+num+'" id="select'+num+'" style="width: 272px;margin: 0 auto;"  class="form-control" required>\n' +
+            '                <select onchange="myFunction('+num+')" name="selector'+num+'" id="select'+num+'" style="width: 272px;margin: 0 auto;"  class="form-control " data-live-search="true" required>\n' +
             '                    <option value="">None</option>\n' +
             '                    @foreach($products as $product)\n' +
             '                        <option value="{{$product->id}}">{{$product->name}}</option>\n' +
@@ -407,6 +408,8 @@
             '                    <input id="product_id'+num+'" type="text" value="0" name="product_id'+num+'" style="visibility: hidden;position: absolute;">\n' +
             '                </div>\n' +
             '            </div>');
+
+        $('#select'+num).selectpicker();
 
         num++;
     });
