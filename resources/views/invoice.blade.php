@@ -133,7 +133,7 @@
                 <div class="block">
                     <div>
                         <label for="selector0">Ընտրել ապրանքը</label><br/>
-                        <select onchange="myFunction(0)" name='selector0' id="select0" style="width: 272px;margin: 0 auto;" class="form-control" required>
+                        <select onchange="myFunction(0)" name='selector0' id="select0" style="width: 272px;margin: 0 auto;" data-live-search="true" class="selectpicker form-control" required>
                             <option value="">None</option>
                             @foreach($products as $product)
                                 <option value="{{$product->id}}">{{$product->name}}</option>
@@ -215,7 +215,7 @@
         $('#sale'+x).val(0);
         var id = $('select[name=selector'+x+']').val();
         if(id !== ''){
-            $.get("/getProduct?id=" + id, function (data) {
+            $.get("/index.php/getProduct?id=" + id, function (data) {
                 var product = data;
                 var stock = 0;
                 if (product['1'] !== null &&  product['1'] !== 0) {
@@ -340,14 +340,14 @@
                 data.did_price = didPrice;
                 $.ajax({
                     type: "POST",
-                    url: '/saveInvoice',
+                    url: '/index.php/saveInvoice',
                     headers: {
                         'X-CSRF-TOKEN': $('#token').val()
                     },
                     data: data,
                     success: function(data){
                         if(data === 'Done') {
-                            var url = "/admin/invoices";
+                            var url = "/index.php/admin/invoices";
                             $(location).attr("href", url);
                         }
                     }
